@@ -1,6 +1,6 @@
 <?php
 
-class Service
+class service
 {
 
     public function getCliente()
