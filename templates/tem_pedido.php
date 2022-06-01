@@ -1,5 +1,5 @@
 <?php
-
+/*
 include("autoload.php");
 
 if (isset($_SERVER['QUERY_STRING'])) {
@@ -70,3 +70,4 @@ if (isset($queries) && isset($queries['pagina'])) {
     }
     echo '</table> </div>';
 }
+*/

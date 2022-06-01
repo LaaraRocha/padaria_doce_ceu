@@ -9,12 +9,12 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 if (isset($queries) && isset($queries['pagina'])) {
     if ($queries['pagina'] === 'listagem') {
-        $service = new Service();
+        $service = new service();
         $lista = $service->getCliente();
         echo '<div id="mainDivListagem">  <table class="table">';
         foreach ($lista as $item) {
             echo '<tr>';
-            echo '<td>'.$item['NomeCliente'].'</td>';
+            echo '<td>'.$item['nome'].'</td>';
             echo '</tr>';
         }
         echo '</table> </div>';
@@ -26,23 +26,23 @@ if (isset($queries) && isset($queries['pagina'])) {
                         <br/> <br/>
                         <a href="?pagina=listagem">Voltar</a>
                        </div> </form> ';
-        if (isset($_POST['nomeCliente'])) {
-            $service = new Service();
-            $service->cadastrarCliente($_POST['nomeCliente']);
+        if (isset($_POST['nome'])) {
+            $service = new service();
+            $service->cadastrarCliente($_POST['nome']);
             echo 'Cliente salvo';
         }
     } else if ($queries['pagina'] === 'edicao') {
         echo '<div id="mainDivCadastro"> <form method="post">
-                        <input type="text" placeholder="Nome Cliente a ser atualizada" value="nomeClienteOld"  class="form-control" />
+                        <input type="text" placeholder="Nome Cliente a ser atualizada" value="nomeOld"  class="form-control" />
                         <br/> <br/>
-                        <input type="text" placeholder="Novo nome cliente " value="nomeClienteNew"  class="form-control" />
+                        <input type="text" placeholder="Novo nome cliente " value="nomeNew"  class="form-control" />
                         <button class="btn btn-primary" type="submit">Salvar</button>
                         <br/> <br/>
                         <a href="?pagina=listagem">Voltar</a>
                       </form> </div> ';
-        if (isset($_POST['nomeClienteOld']) && isset($_POST['nomeClienteNew'])) {
-            $service = new Service();
-            $service->editarCliente($_POST['nomeClienteOld'], $_POST['nomeClienteNew']);
+        if (isset($_POST['nomeOld']) && isset($_POST['nomeNew'])) {
+            $service = new service();
+            $service->editarCliente($_POST['nomeOld'], $_POST['nomeNew']);
             echo 'Edição salva';
         }
     } else if ($queries['pagina'] === 'excluir') {
@@ -53,19 +53,19 @@ if (isset($queries) && isset($queries['pagina'])) {
                         <br/> <br/>
                         <a href="?pagina=listagem">Voltar</a>
                       </form> </div> ';
-        if (isset($_POST['nomeCliente'])) {
-            $service = new Service();
-            $service->excluirCliente($_POST['nomeCliente']);
+        if (isset($_POST['nome'])) {
+            $service = new service();
+            $service->excluirCliente($_POST['nome']);
             echo 'Excluído com sucesso';
         }
     }
 } else {
-    $service = new Service();
+    $service = new service();
     $lista = $service->getCliente();
     echo '<div id="mainDivListagem"> <table class="table">';
     foreach ($lista as $item) {
         echo '<tr>';
-        echo '<td>'.$item['NomeCliente'].'</td>';
+        echo '<td>'.$item['nome'].'</td>';
         echo '</tr>';
     }
     echo '</table> </div>';

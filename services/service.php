@@ -14,21 +14,21 @@ class service
     public function cadastrarCliente($cliente)
     {
         $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
-        $stmt = $conn->prepare("INSERT INTO cliente (NomeCliente) VALUES ('" . $cliente . "')");
+        $stmt = $conn->prepare("INSERT INTO cliente (nome) VALUES ('" . $cliente . "')");
         $stmt->execute();
     }
 
-    public function editarCliente($clienteOld, $clienteNew)
+    public function editarCliente($nomeOld, $nomeNew)
     {
         $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
-        $stmt = $conn->prepare("UPDATE cliente SET NomeCliente='" . $clienteNew . "' WHERE NomeCliente = '" . $clienteOld . "'");
+        $stmt = $conn->prepare("UPDATE cliente SET nome='" . $nomeNew . "' WHERE nome = '" . $nomeOld . "'");
         $stmt->execute();
     }
 
     public function excluirCliente($cliente)
     {
         $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
-        $stmt = $conn->prepare("DELETE FROM cliente WHERE cliente.NomeCliente = '" . $cliente . "'");
+        $stmt = $conn->prepare("DELETE FROM cliente WHERE nome = '" . $cliente . "'");
         $stmt->execute();
     }
 
@@ -42,55 +42,28 @@ class service
         return $stmt->fetchAll();
     }
 
-    public function cadastrarProduto($produto)
+    public function cadastrarProduto($descricaoProduto, $valorProduto, $quantidadeProduto)
     {
         $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
-        $stmt = $conn->prepare("INSERT INTO produto (DescricaoProduto) VALUES ('" . $produto . "')");
+        $stmt = $conn->prepare("INSERT INTO produto (descricao, valor, quantidade) VALUES ('" .$descricaoProduto. "', " .$valorProduto." , ".$quantidadeProduto.")");
         $stmt->execute();
     }
 
-    public function editarProduto($produtoOld, $produtoNew)
+    public function editarProduto($descricaoOld, $descricaoNew)
     {
         $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
-        $stmt = $conn->prepare("UPDATE cliente SET DescricaoProduto='" . $produtoNew . "' WHERE DescricaoProduto = '" . $produtoOld . "'");
+        $stmt = $conn->prepare("UPDATE cliente SET descricao='" . $descricaoNew . "' WHERE descricao = '" . $descricaoOld . "'");
         $stmt->execute();
     }
 
-    public function excluirProduto($produto)
+    public function excluirProduto($descricao)
     {
         $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
-        $stmt = $conn->prepare("DELETE FROM produto WHERE produto.DescricaoProduto = '" . $produto . "'");
+        $stmt = $conn->prepare("DELETE FROM produto WHERE descricao = '" . $descricao . "'");
         $stmt->execute();
     }
 
 //======================================================================================================================//
 
-  /*  public function getPedido()
-    {
-        $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
-        $stmt = $conn->prepare("SELECT * FROM pedido");
-        $stmt->execute();
-        return $stmt->fetchAll();
-    }
 
-    public function cadastrarPedido($pedido)
-    {
-        $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
-        $stmt = $conn->prepare("INSERT INTO pedido (DescricaoProduto) VALUES ('" . $produto . "')");
-        $stmt->execute();
-    }
-
-    public function editarProduto($produtoOld, $produtoNew)
-    {
-        $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
-        $stmt = $conn->prepare("UPDATE cliente SET DescricaoProduto='" . $produtoNew . "' WHERE DescricaoProduto = '" . $produtoOld . "'");
-        $stmt->execute();
-    }
-
-    public function excluirProduto($produto)
-    {
-        $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
-        $stmt = $conn->prepare("DELETE FROM produto WHERE produto.DescricaoProduto = '" . $produto . "'");
-        $stmt->execute();
-    }*/
 }

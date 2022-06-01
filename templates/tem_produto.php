@@ -9,7 +9,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
 
 if (isset($queries) && isset($queries['pagina'])) {
     if ($queries['pagina'] === 'listagem') {
-        $service = new Service();
+        $service = new service();
         $lista = $service->getProduto();
         echo '<div id="mainDivListagem">  <table class="table">';
         foreach ($lista as $item) {
@@ -30,8 +30,8 @@ if (isset($queries) && isset($queries['pagina'])) {
                         <br/> <br/>
                         <a href="?pagina=listagem">Voltar</a>
                        </div> </form> ';
-        if (isset($_POST['descricaoProduto'])) {
-            $service = new Service();
+        if (isset($_POST['descricaoProduto'])){
+            $service = new service();
             $service->cadastrarProduto($_POST['DescricaoProduto']);
             echo 'Produto salvo';
         }
@@ -45,7 +45,7 @@ if (isset($queries) && isset($queries['pagina'])) {
                         <a href="?pagina=listagem">Voltar</a>
                       </form> </div> ';
         if (isset($_POST['descricaoProdutoOld']) && isset($_POST['descricaoProdutoNew'])) {
-            $service = new Service();
+            $service = new service();
             $service->editarProduto($_POST['descricaoProdutoOld'], $_POST['descricaoProdutoNewNew']);
             echo 'Edição salva';
         }
@@ -58,13 +58,13 @@ if (isset($queries) && isset($queries['pagina'])) {
                         <a href="?pagina=listagem">Voltar</a>
                       </form> </div> ';
         if (isset($_POST['descricaoProduto'])) {
-            $service = new Service();
+            $service = new service();
             $service->excluirProduto($_POST['descricaoProduto']);
             echo 'Excluído com sucesso';
         }
     }
 } else {
-    $service = new Service();
+    $service = new service();
     $lista = $service->getProduto();
     echo '<div id="mainDivListagem"> <table class="table">';
     foreach ($lista as $item) {
