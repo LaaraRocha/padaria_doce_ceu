@@ -52,7 +52,7 @@ class service
     public function editarProduto($descricaoOld, $descricaoNew)
     {
         $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
-        $stmt = $conn->prepare("UPDATE cliente SET descricao='" . $descricaoNew . "' WHERE descricao = '" . $descricaoOld . "'");
+        $stmt = $conn->prepare("UPDATE produto SET descricao='" . $descricaoNew . "' WHERE descricao = '" . $descricaoOld . "'");
         $stmt->execute();
     }
 

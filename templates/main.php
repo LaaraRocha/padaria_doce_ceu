@@ -1,15 +1,10 @@
 <?php
-include ('../templates/main.php');
+
+echo 'teste';
+
 ?>
 
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main</title>
-    <link rel="stylesheet" href="/resources/style.css">
-</head>
 
 <body>
 
