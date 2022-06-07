@@ -65,5 +65,32 @@ class service
 
 //======================================================================================================================//
 
+    public function getFornecedor()
+    {
+        $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
+        $stmt = $conn->prepare("SELECT * FROM fornecedor");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 
+    public function cadastrarFornecedor($fornecedor)
+    {
+        $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
+        $stmt = $conn->prepare("INSERT INTO fornecedor (nome) VALUES ('" . $fornecedor . "')");
+        $stmt->execute();
+    }
+
+    public function editarFornecedor($nomeOld, $nomeNew)
+    {
+        $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
+        $stmt = $conn->prepare("UPDATE fornecedor SET nome='" . $nomeNew . "' WHERE nome = '" . $nomeOld . "'");
+        $stmt->execute();
+    }
+
+    public function excluirFornecedor($fornecedor)
+    {
+        $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
+        $stmt = $conn->prepare("DELETE FROM fornecedor WHERE nome = '" . $fornecedor . "'");
+        $stmt->execute();
+    }
 }

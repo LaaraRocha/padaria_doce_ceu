@@ -3,7 +3,7 @@
 include("autoload.php");
 
 $service = new service();
-$lista = $service->getCliente();
+$lista = $service->getFornecedor();
 echo '<div id="mainDivListagem">  <table class="table">';
 foreach ($lista as $item) {
     echo '<tr>';
@@ -20,42 +20,42 @@ if (isset($_SERVER['QUERY_STRING'])) {
     if (isset($queries) && isset($queries['pagina'])) {
         if ($queries['pagina'] === 'cadastro') {
             echo '<form method="post" action="?pagina=cadastro"> <div id="mainDivCadastro"> 
-                        <input type="text" placeholder="NomeCliente" name="nomeCliente" class="form-control" />
+                        <input type="text" placeholder="NomeFornecedor" name="nomeFornecedor" class="form-control" />
                         <br/> <br/>
-                        <button class="btn btn-primary" type="submit" name="salvar" value="nomeCliente">Salvar</button>
+                        <button class="btn btn-primary" type="submit" name="salvar" value="nomeFornecedor">Salvar</button>
                         <br/> <br/>
                         <a href="?pagina=listagem">Voltar</a>
                        </div> </form> ';
             if (isset($_POST['salvar'])) {
                 $service = new service();
-                $service->cadastrarCliente($_POST['nomeCliente']);
-                echo 'Cliente salvo';
+                $service->cadastrarFornecedor($_POST['nomeFornecedor']);
+                echo 'Fornecedor salvo';
             }
         } else if ($queries['pagina'] === 'alterar') {
             echo '<div id="mainDivCadastro"> <form method="post">
-                        <input type="text" placeholder="Nome Cliente a ser atualizada" name="nomeOld"  class="form-control" />
+                        <input type="text" placeholder="Nome Fornecedor a ser atualizada" name="nomeOld"  class="form-control" />
                         <br/> <br/>
-                        <input type="text" placeholder="Novo nome cliente " name="nomeNew"  class="form-control" />
+                        <input type="text" placeholder="Novo nome fornecedor " name="nomeNew"  class="form-control" />
                         <button class="btn btn-primary" name="salvar" type="submit">Salvar</button>
                         <br/> <br/>
                         <a href="?pagina=listagem">Voltar</a>
                       </form> </div> ';
             if (isset($_POST['nomeOld']) && isset($_POST['nomeNew'])) {
                 $service = new service();
-                $service->editarCliente($_POST['nomeOld'], $_POST['nomeNew']);
+                $service->editarFornecedor($_POST['nomeOld'], $_POST['nomeNew']);
                 echo 'Edição salva';
             }
         } else if ($queries['pagina'] === 'excluir') {
             echo '<div id="mainDivCadastro"> <form method="post">
-                        <input type="text" placeholder="Nome Cliente a ser exluido" name="nomeCliente" class="form-control" />
+                        <input type="text" placeholder="Nome Fornecedor a ser exluido" name="nomeFornecedor" class="form-control" />
                         <br/> <br/>
                         <button class="btn btn-primary" name="excluir" type="submit">Excluir</button>
                         <br/> <br/>
                         <a href="?pagina=listagem">Voltar</a>
                       </form> </div> ';
-            if (isset($_POST['nomeCliente'])) {
+            if (isset($_POST['nomeFornecedor'])) {
                 $service = new service();
-                $service->excluirCliente($_POST['nomeCliente']);
+                $service->excluirFornecedor($_POST['nomeFornecedor']);
                 echo 'Excluído com sucesso';
             }
         }
