@@ -11,7 +11,7 @@
     background-color: rgb(37, 37, 39);
 }
 
-#menu-h ul {
+#menu-h ul li {
     max-width: 800px;
     list-style: none;
     padding: 0;

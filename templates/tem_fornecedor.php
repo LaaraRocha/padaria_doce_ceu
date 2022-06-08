@@ -7,6 +7,7 @@ $lista = $service->getFornecedor();
 echo '<div id="mainDivListagem">  <table class="table">';
 foreach ($lista as $item) {
     echo '<tr>';
+    echo '<td>' . $item['id'] . '</td>';
     echo '<td>' . $item['nome'] . '</td>';
     echo '</tr>';
 }
@@ -61,7 +62,10 @@ if (isset($_SERVER['QUERY_STRING'])) {
         }
     }
 
-echo '<tb>
+echo '
+<link rel="stylesheet" href="/resources/style_fornecedor.css">
+
+<tb>
 <ti>
     <a href="?pagina=listagem">Listar</a>
 </ti>

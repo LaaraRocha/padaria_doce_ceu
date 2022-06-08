@@ -6,11 +6,16 @@ $service = new service();
 $lista = $service->getPedido();
 echo '<div id="mainDivListagem">  <table class="table">';
 echo '<tr>
-            <td>Descrição</td>
-            <td>Valor</td>
-            <td>Quantidade</td>';
+            <td>Id</td>
+            <td>cliente</td>
+            <td>fornecedor</td>
+            <td>produto</td>
+            <td>Quantidade</td>
+            <td>valor total</td>';
 foreach ($lista as $item) {
     echo '<tr>';
+    echo '<td>' . $item['id'] . '</td>';
+    echo '<td>'.$item['id_cliente'].'</td>';
     echo '<td>'.$item['id_fornecedor'].'</td>';
     echo '<td>'.$item['id_produto'].'</td>';
     echo '<td>'.$item['quantidade'].'</td>';
@@ -28,13 +33,15 @@ if (isset($queries) && isset($queries['pagina'])) {
 
     if ($queries['pagina'] === 'cadastro') {
         echo '<form method="post" action="?pagina=cadastro"> <div id="mainDivCadastro"> 
-                        <input type="number" placeholder="IdFornecedor" name="idFornecedor" class="form-control"/>
+                        <input type="number" placeholder="Id cliente" name="idCliente" class="form-control"/>
                         <br/> <br/>
-                        <input type="number" placeholder="IdProduto" name="idProduto" class="form-control"/>
+                        <input type="number" placeholder="Id fornecedor" name="idFornecedor" class="form-control"/>
                         <br/> <br/>
-                        <input type="number" placeholder="QuantidadePedido" name="quantidadePedido" class="form-control"/>
+                        <input type="number" placeholder="Id produto" name="idProduto" class="form-control"/>
                         <br/> <br/>
-                        <input type="number" placeholder="ValorTotalPedido" name="valorTotalPedido" class="form-control"/>
+                        <input type="number" placeholder="Quantidade à pedir" name="quantidadePedido" class="form-control"/>
+                        <br/> <br/>
+                        <input type="number" placeholder="Valor total à pedir" name="valorTotalPedido" class="form-control"/>
                         <br/> <br/>
                         <button class="btn btn-primary" type="submit" name="salvar">Salvar</button>
                         <br/> <br/>
@@ -42,50 +49,37 @@ if (isset($queries) && isset($queries['pagina'])) {
                        </div> </form> ';
         if (isset($_POST['salvar'])){
             $service = new service();
-            $service->cadastrarPedido($_POST['idFornecedor'], $_POST['idProduto'], $_POST['quantidadePedido'], $_POST['valorTotalPedido']);
+            $service->cadastrarPedido($_POST['idCliente'],$_POST['idFornecedor'], $_POST['idProduto'], $_POST['quantidadePedido'], $_POST['valorTotalPedido']);
             echo 'Pedido salvo';
         }
-    } else if ($queries['pagina'] === 'alterar') {
-        echo '<div id="mainDivCadastro"> <form method="post">
-                        <input type="text" placeholder="Id Pedido a ser atualizado" name="descricaoPedidoOld"  class="form-control" />
-                        <br/> <br/>
-                        <input type="text" placeholder="Nova descricao Pedido " name="descricaoPedidoNew"  class="form-control" />
-                        <button class="btn btn-primary" name="salvar" type="submit">Salvar</button>
-                        <br/> <br/>
-                        <a href="?pagina=listagem">Voltar</a>
-                      </form> </div> ';
-        if (isset($_POST['descricaoPedidoOld']) && isset($_POST['descricaoPedidoNew'])) {
-            $service = new service();
-            $service->editarPedido($_POST['descricaoPedidoOld'], $_POST['descricaoPedidoNew']);
-            echo 'Edição salva';
-        }
+
     } else if ($queries['pagina'] === 'excluir') {
         echo '<div id="mainDivCadastro"> <form method="post">
-                        <input type="text" placeholder="Descricao Pedido a ser exluido" name="descricaoPedido" class="form-control" />
+                        <input type="number" placeholder="Id do pedido a ser exluido" name="idPedido" class="form-control" />
                         <br/> <br/>
                         <button class="btn btn-primary" name="excluir" type="submit">Excluir</button>
                         <br/> <br/>
                         <a href="?pagina=listagem">Voltar</a>
                       </form> </div> ';
-        if (isset($_POST['descricaoPedido'])) {
+        if (isset($_POST['idPedido'])) {
             $service = new service();
-            $service->excluirPedido($_POST['descricaoPedido']);
+            $service->excluirPedido($_POST['idPedido']);
             echo 'Excluído com sucesso';
         }
     }
 }
 
-echo '<tb>
+echo '
+<link rel="stylesheet" href="/resources/style_pedido.css">
+
+<tb>
 <ti>
     <a href="?pagina=listagem">Listar</a>
 </ti>
 <ti>
     <a href="?pagina=cadastro">Cadastrar</a>
 </ti>
-    <ti>
-    <a href="?pagina=alterar">Alterar</a>
-</ti>
-        <ti>
+<ti>
     <a href="?pagina=excluir">Excluir</a>
 </ti>
 </tb>';

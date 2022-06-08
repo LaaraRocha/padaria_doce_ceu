@@ -6,11 +6,13 @@ $service = new service();
 $lista = $service->getProduto();
 echo '<div id="mainDivListagem">  <table class="table">';
     echo '<tr>
+            <td>Id</td>
             <td>Descrição</td>
             <td>Valor</td>
             <td>Quantidade</td>';
 foreach ($lista as $item) {
     echo '<tr>';
+    echo '<td>' . $item['id'] . '</td>';
     echo '<td>'.$item['descricao'].'</td>';
     echo '<td>'.$item['valor'].'</td>';
     echo '<td>'.$item['quantidade'].'</td>';
@@ -72,7 +74,10 @@ if (isset($queries) && isset($queries['pagina'])) {
     }
 }
 
-echo '<tb>
+echo '
+<link rel="stylesheet" href="/resources/style_produto.css">
+
+<tb>
 <ti>
     <a href="?pagina=listagem">Listar</a>
 </ti>

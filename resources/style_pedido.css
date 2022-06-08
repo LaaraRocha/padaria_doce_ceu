@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#mainDivCadastro{
+    background-color: #87CEFA;
+}
+
+#mainDivListagem {
+    background-color: #87CEFA;
+}
+
+a {
+    display: inline;
+    color: black;
+    text-decoration: none;
+    padding: 10px;
+}
+
+table td{
+    padding: 15px;
+    border: 1px solid black;
+    text-align: center;
+}

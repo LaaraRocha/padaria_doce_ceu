@@ -7,6 +7,7 @@ $lista = $service->getCliente();
 echo '<div id="mainDivListagem">  <table class="table">';
 foreach ($lista as $item) {
     echo '<tr>';
+    echo '<td>' . $item['id'] . '</td>';
     echo '<td>' . $item['nome'] . '</td>';
     echo '</tr>';
 }
@@ -20,6 +21,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
     if (isset($queries) && isset($queries['pagina'])) {
         if ($queries['pagina'] === 'cadastro') {
             echo '<form method="post" action="?pagina=cadastro"> <div id="mainDivCadastro"> 
+                        <br><br/>
                         <input type="text" placeholder="NomeCliente" name="nomeCliente" class="form-control" />
                         <br/> <br/>
                         <button class="btn btn-primary" type="submit" name="salvar" value="nomeCliente">Salvar</button>
@@ -33,6 +35,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
             }
         } else if ($queries['pagina'] === 'alterar') {
             echo '<div id="mainDivCadastro"> <form method="post">
+                        <br><br/>
                         <input type="text" placeholder="Nome Cliente a ser atualizada" name="nomeOld"  class="form-control" />
                         <br/> <br/>
                         <input type="text" placeholder="Novo nome cliente " name="nomeNew"  class="form-control" />
@@ -47,6 +50,7 @@ if (isset($_SERVER['QUERY_STRING'])) {
             }
         } else if ($queries['pagina'] === 'excluir') {
             echo '<div id="mainDivCadastro"> <form method="post">
+                        <br><br/>
                         <input type="text" placeholder="Nome Cliente a ser exluido" name="nomeCliente" class="form-control" />
                         <br/> <br/>
                         <button class="btn btn-primary" name="excluir" type="submit">Excluir</button>
@@ -61,7 +65,10 @@ if (isset($_SERVER['QUERY_STRING'])) {
         }
     }
 
-echo '<tb>
+echo '
+<link rel="stylesheet" href="/resources/style_cliente.css">
+
+<tb>
 <ti>
     <a href="?pagina=listagem">Listar</a>
 </ti>
@@ -75,4 +82,3 @@ echo '<tb>
     <a href="?pagina=excluir">Excluir</a>
 </ti>
 </tb>';
-

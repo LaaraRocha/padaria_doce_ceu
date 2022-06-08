@@ -45,7 +45,7 @@ class service
     public function cadastrarProduto($descricaoProduto, $valorProduto, $quantidadeProduto)
     {
         $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
-        $stmt = $conn->prepare("INSERT INTO produto (descricao, valor, quantidade) VALUES ('" .$descricaoProduto. "', " .$valorProduto." , ".$quantidadeProduto.")");
+        $stmt = $conn->prepare("INSERT INTO produto (descricao, valor, quantidade) VALUES ('" . $descricaoProduto . "', " . $valorProduto . " , " . $quantidadeProduto . ")");
         $stmt->execute();
     }
 
@@ -93,4 +93,30 @@ class service
         $stmt = $conn->prepare("DELETE FROM fornecedor WHERE nome = '" . $fornecedor . "'");
         $stmt->execute();
     }
+
+//======================================================================================================================//
+
+    public function getPedido()
+    {
+        $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
+        $stmt = $conn->prepare("SELECT * FROM pedido");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function cadastrarPedido($id_cliente, $id_fornecedor, $id_produto, $quantidade, $valor_total)
+    {
+        $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
+        $stmt = $conn->prepare("INSERT INTO pedido (id_cliente, id_fornecedor, id_produto, quantidade, valor_total) VALUES (" . $id_cliente . ", ". $id_fornecedor . ", 
+        " . $id_produto . " , " . $quantidade . " , " . $valor_total . ")");
+        $stmt->execute();
+    }
+
+    public function excluirPedido($id)
+    {
+        $conn = new PDO('mysql:host=localhost;dbname=padaria_doce_ceu', 'root', '');
+        $stmt = $conn->prepare("DELETE FROM pedido WHERE id = '" . $id . "'");
+        $stmt->execute();
+    }
+
 }
