@@ -81,4 +81,7 @@ echo '
         <ti>
     <a href="?pagina=excluir">Excluir</a>
 </ti>
+<ti>
+    <a href="main.php">Voltar</a>
+</ti>
 </tb>';
